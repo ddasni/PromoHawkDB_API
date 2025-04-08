@@ -8,7 +8,7 @@ include "conexao.php";
 
         // Método para cadastrar uma nova pessoa no banco de dados
         // Insere dados na tabela 'pessoa' e 'contato'
-        public function cadastrar(Pessoa $p){
+        public function cadastrar(Usuario $p){
 
             // SQL para inserir dados na tabela 'pessoa'
             $sql_pessoa = "insert into pessoa (cpf_pessoa, nome_pessoa, profissao_pessoa) 
@@ -45,7 +45,7 @@ include "conexao.php";
         }
 
         //os demais métodos seguem a mesma lógica do primeiro
-        public function deletar(Pessoa $p){
+        public function deletar(Usuario $p){
             $sql_pessoa = "delete from pessoa where cpf_pessoa=?";
             $sql_contato = "delete from contato where pessoa_contato = ?";
 
@@ -68,7 +68,7 @@ include "conexao.php";
             }
         }
 
-        public function atualizar(Pessoa $p){
+        public function atualizar(Usuario $p){
             $sql_pessoa = "update pessoa set nome_pessoa=?, profissao_pessoa=? where cpf_pessoa =?";
             $sql_contato = "update contato set telefone_contato=?, email_contato=? where pessoa_contato=?";
 
