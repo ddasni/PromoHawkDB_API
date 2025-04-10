@@ -1,36 +1,28 @@
 <?php
 // Classe entidade Usuario
-// Representa uma Usuario com seus atributos
+// Representa um Usuario com seus atributos
 
   class Usuario{
     // Atributos privados da classe Pessoa
-    private $cpf, $nome, $profissao, $telefone, $email;
+    private $nome, $username, $telefone, $email, $senha;
 
-    // Método para definir o CPF da pessoa
-    public function setCpf($cpf){
-        $this->cpf = $cpf;
-    }
-
-    // Método para obter o CPF da pessoa
-    public function getCpf(){
-        return $this->cpf;
-    }
-
-    // os outros métodos getters e setters para os demais atributos
+    // Método para definir o nome verdadeiro da pessoa
     public function setNome($nome){
         $this->nome = $nome;
     }
 
+    // Método para obter o nome verdadeiro da pessoa
     public function getNome(){
         return $this->nome;
     }
 
-    public function setProfissao($profissao){
-        $this->profissao = $profissao;
+    // os outros métodos getters e setters para os demais atributos
+    public function setUsername($username){
+        $this->username = $username;
     }
 
-    public function getProfissao(){
-        return $this->profissao;
+    public function getUsername(){
+        return $this->username;
     }
 
     public function setTelefone($telefone){
@@ -47,5 +39,13 @@
 
     public function getEmail(){
         return $this->email;
+    }
+
+    public function setSenha($senha){
+        $this->senha = $senha;
+    }
+
+    public function getSenha(){
+        return $this->senha;
     }
   }
