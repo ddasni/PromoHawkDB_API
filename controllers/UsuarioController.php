@@ -14,36 +14,36 @@
     include "UsuarioDAO.php";
     
     // Cria instâncias das classes
-    $pessoa = new Usuario();
-    $pessoaDAO = new UsuarioDAO();
+    $usuario = new Usuario();
+    $usuarioDAO = new UsuarioDAO();
     
     // Verifica se a ação é consultar todas as pessoas
     if(isset($_GET['getPessoa'])){
          // Consulta todas as pessoas no banco de dados e retorna em formato JSON
-        echo json_encode($pessoaDAO->consultar());
+        echo json_encode($usuarioDAO->consultar());
     }
     else if(isset($_GET['cadPessoa'])){
         // Extrai os dados da pessoa da requisição e cria um objeto Pessoa
-        $pessoa->setCpf(filter_input(INPUT_POST ,'cpf'));
-        $pessoa->setNome(filter_input(INPUT_POST ,'nome'));
-        $pessoa->setProfissao(filter_input(INPUT_POST ,'profissao'));
-        $pessoa->setTelefone(filter_input(INPUT_POST ,'telefone'));
-        $pessoa->setEmail(filter_input(INPUT_POST ,'email'));
+        $usuario->setCpf(filter_input(INPUT_POST ,'cpf'));
+        $usuario->setNome(filter_input(INPUT_POST ,'nome'));
+        $usuario->setProfissao(filter_input(INPUT_POST ,'profissao'));
+        $usuario->setTelefone(filter_input(INPUT_POST ,'telefone'));
+        $usuario->setEmail(filter_input(INPUT_POST ,'email'));
         // Insere a pessoa no banco de dados e retorna o resultado em JSON
-        echo json_encode($pessoaDAO->cadastrar($pessoa));
+        echo json_encode($usuarioDAO->cadastrar($usuario));
     }
     else if(isset($_GET['delPessoa'])){
         // utiliza a mesma lógica anterior, agora para excluir uma pessoa
-        $pessoa->setCpf(filter_input(INPUT_POST ,'cpf'));
-        echo json_encode($pessoaDAO->deletar($pessoa));
+        $usuario->setCpf(filter_input(INPUT_POST ,'cpf'));
+        echo json_encode($usuarioDAO->deletar($usuario));
     }
     else if(isset($_GET['atuPessoa'])){
         // utiliza a mesma lógica anterior, agora para atualizar uma pessoa
-        $pessoa->setCpf(filter_input(INPUT_POST ,'cpf'));
-        $pessoa->setNome(filter_input(INPUT_POST ,'nome'));
-        $pessoa->setProfissao(filter_input(INPUT_POST ,'profissao'));
-        $pessoa->setTelefone(filter_input(INPUT_POST ,'telefone'));
-        $pessoa->setEmail(filter_input(INPUT_POST ,'email'));
-        echo json_encode($pessoaDAO->atualizar($pessoa));
+        $usuario->setCpf(filter_input(INPUT_POST ,'cpf'));
+        $usuario->setNome(filter_input(INPUT_POST ,'nome'));
+        $usuario->setProfissao(filter_input(INPUT_POST ,'profissao'));
+        $usuario->setTelefone(filter_input(INPUT_POST ,'telefone'));
+        $usuario->setEmail(filter_input(INPUT_POST ,'email'));
+        echo json_encode($usuarioDAO->atualizar($usuario));
     }
 ?> 
