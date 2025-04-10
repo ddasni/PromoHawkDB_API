@@ -3,20 +3,10 @@
 // Representa uma Usuario com seus atributos
 
   class Usuario{
-    // Atributos privados da classe Pessoa
-    private $cpf, $nome, $profissao, $telefone, $email;
+    // Atributos privados da classe Ususario
+    private $nome, $username, $telefone, $email, $senha, $imagem;
 
-    // Método para definir o CPF da pessoa
-    public function setCpf($cpf){
-        $this->cpf = $cpf;
-    }
-
-    // Método para obter o CPF da pessoa
-    public function getCpf(){
-        return $this->cpf;
-    }
-
-    // os outros métodos getters e setters para os demais atributos
+    // Método para definir o Nome do usuario
     public function setNome($nome){
         $this->nome = $nome;
     }
@@ -25,12 +15,15 @@
         return $this->nome;
     }
 
-    public function setProfissao($profissao){
-        $this->profissao = $profissao;
+
+    // os outros métodos getters e setters para os demais atributos
+    public function setUsername($username){
+        $this->username = $username;
     }
 
-    public function getProfissao(){
-        return $this->profissao;
+    // Método para obter o username da usuario
+    public function getUsername(){
+        return $this->username;
     }
 
     public function setTelefone($telefone){
@@ -47,6 +40,22 @@
 
     public function getEmail(){
         return $this->email;
+    }
+
+    public function setSenha($senha){
+        $this->senha = $senha;
+    }
+
+    public function getSenha(){
+        return $this->senha;
+    }
+
+    public function setImagem($imagem){
+        $this->imagem = $imagem;
+    }
+
+    public function getImagem(){
+        return $this->imagem;
     }
   }
 ?>

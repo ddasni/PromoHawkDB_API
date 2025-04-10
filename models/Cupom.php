@@ -3,7 +3,7 @@
 // Representa uma Cupom com seus atributos
 
   class Cupom{
-    // Atributos privados da classe Pessoa
+    // Atributos privados da classe Cupom
     private $codigo, $desconto, $validade;
 
     // Método para definir o codigo do Cupom

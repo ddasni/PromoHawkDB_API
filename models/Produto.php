@@ -1,22 +1,12 @@
 <?php
-// Classe entidade Usuario
-// Representa uma Usuario com seus atributos
+// Classe entidade Produto
+// Representa uma Produto com seus atributos
 
-  class Usuario{
-    // Atributos privados da classe Pessoa
-    private $cpf, $nome, $profissao, $telefone, $email;
+  class Produto{
+    // Atributos privados da classe Produto
+    private $nome, $preco, $descricao, $imagem;
 
-    // Método para definir o CPF da pessoa
-    public function setCpf($cpf){
-        $this->cpf = $cpf;
-    }
-
-    // Método para obter o CPF da pessoa
-    public function getCpf(){
-        return $this->cpf;
-    }
-
-    // os outros métodos getters e setters para os demais atributos
+    // Método para definir o preco da produto
     public function setNome($nome){
         $this->nome = $nome;
     }
@@ -25,28 +15,30 @@
         return $this->nome;
     }
 
-    public function setProfissao($profissao){
-        $this->profissao = $profissao;
+    // os outros métodos getters e setters para os demais atributos
+    public function setPreco($preco){
+        $this->preco = $preco;
     }
 
-    public function getProfissao(){
-        return $this->profissao;
+    // Método para obter o preco do produto
+    public function getPreco(){
+        return $this->preco;
     }
 
-    public function setTelefone($telefone){
-        $this->telefone = $telefone;
+    public function setDescricao($descricao){
+        $this->descricao = $descricao;
     }
 
-    public function getTelefone(){
-        return $this->telefone;
+    public function getDescricao(){
+        return $this->descricao;
     }
 
-    public function setEmail($email){
-        $this->email = $email;
+    public function setImagem($imagem){
+        $this->imagem = $imagem;
     }
 
-    public function getEmail(){
-        return $this->email;
+    public function getImagem(){
+        return $this->imagem;
     }
   }
 ?>
