@@ -1,8 +1,8 @@
 <?php
-require_once './models/Usuario.php';
-require_once './dao/UsuarioDAO.php';
+require_once './models/Produto.php';
+require_once './dao/ProdutoDAO.php';
 
-class UsuarioController {
+class ProdutoController {
     public function consultar() {
         $usuarioDAO = new UsuarioDAO();
         echo json_encode($usuarioDAO->consultar());

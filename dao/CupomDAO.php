@@ -3,19 +3,16 @@
 // Inclui o arquivo de conexão com o banco de dados
 include "conexao.php";
 
-    // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Pessoa
-    class UsuarioDAO{
+    // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Cupom
+    class CupomDAO{
 
-        // Método para cadastrar uma nova pessoa no banco de dados
-        // Insere dados na tabela 'pessoa' e 'contato'
-        public function cadastrar(Usuario $u){
+        // Método para cadastrar um novo Cupom no banco de dados
+        // Insere dados na tabela 'Cupom'
+        public function cadastrar(Cupom $c){
 
             // SQL para inserir dados na tabela 'pessoa'
-            $sql_usuario = "insert into pessoa (cpf_pessoa, nome_pessoa, profissao_pessoa) 
+            $sql_usuario = "insert into TB_CUPOM (CODIGO_CUPOM, DESCONTO, DATA_VALIDADE) 
             values (?, ?, ?)";
-            // SQL para inserir dados na tabela 'contato'
-            $sql_contato = "insert into contato(telefone_contato, email_contato, pessoa_contato) values
-            (?, ?, ?)";
 
             //instanciar o objeto de conexão
             $bd = new Conexao();
@@ -25,16 +22,9 @@ include "conexao.php";
             $valor_usuario = $con->prepare($sql_usuario);
             $valor_usuario->bindValue(1, $u->getCpf());
             $valor_usuario->bindValue(2, $u->getNome());
-            $valor_usuario->bindValue(3, $u->getProfissao());
-
-            // Prepara e executa as consultas SQL
-            $valor_contato = $con->prepare($sql_contato);
-            $valor_contato->bindValue(1, $u->getTelefone());
-            $valor_contato->bindValue(2, $u->getEmail());
-            $valor_contato->bindValue(3, $u->getCpf());        
+            $valor_usuario->bindValue(3, $u->getProfissao());       
 
             $resultado_pessoa = $valor_usuario->execute();
-            $resultado_contato = $valor_contato->execute();
 
             // Verifica se ambas as inserções foram bem-sucedidas
             if($resultado_pessoa && $resultado_contato){

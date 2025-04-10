@@ -4,7 +4,7 @@
 include "conexao.php";
 
     // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Pessoa
-    class UsuarioDAO{
+    class ProdutoDAO{
 
         // Método para cadastrar uma nova pessoa no banco de dados
         // Insere dados na tabela 'pessoa' e 'contato'

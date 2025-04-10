@@ -3,19 +3,16 @@
 // Inclui o arquivo de conexão com o banco de dados
 include "conexao.php";
 
-    // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Pessoa
+    // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Usuario
     class UsuarioDAO{
 
-        // Método para cadastrar uma nova pessoa no banco de dados
-        // Insere dados na tabela 'pessoa' e 'contato'
+        // Método para cadastrar um novo usuario no banco de dados
+        // Insere dados na tabela 'usuario'
         public function cadastrar(Usuario $u){
 
-            // SQL para inserir dados na tabela 'pessoa'
-            $sql_usuario = "insert into pessoa (cpf_pessoa, nome_pessoa, profissao_pessoa) 
-            values (?, ?, ?)";
-            // SQL para inserir dados na tabela 'contato'
-            $sql_contato = "insert into contato(telefone_contato, email_contato, pessoa_contato) values
-            (?, ?, ?)";
+            // SQL para inserir dados na 'TB_USUARIO'
+            $sql_usuario = "insert into TB_USUARIO (NOME_USUARIO, NOME_VERDADEIRO, EMAIL_USUARIO, 
+                            SENHA_USUARIO, TEL_USUARIO, IMG_USUARIO) values (?, ?, ?, ?, ?, ?)";
 
             //instanciar o objeto de conexão
             $bd = new Conexao();
@@ -23,74 +20,65 @@ include "conexao.php";
 
             // Prepara e executa as consultas SQL
             $valor_usuario = $con->prepare($sql_usuario);
-            $valor_usuario->bindValue(1, $u->getCpf());
+            $valor_usuario->bindValue(1, $u->getUsername());
             $valor_usuario->bindValue(2, $u->getNome());
-            $valor_usuario->bindValue(3, $u->getProfissao());
+            $valor_usuario->bindValue(3, $u->getEmail());
+            $valor_usuario->bindValue(4, $u->getSenha());
+            $valor_usuario->bindValue(5, $u->getTelefone());
+            $valor_usuario->bindValue(6, $u->getImagem());       
 
-            // Prepara e executa as consultas SQL
-            $valor_contato = $con->prepare($sql_contato);
-            $valor_contato->bindValue(1, $u->getTelefone());
-            $valor_contato->bindValue(2, $u->getEmail());
-            $valor_contato->bindValue(3, $u->getCpf());        
-
-            $resultado_pessoa = $valor_usuario->execute();
-            $resultado_contato = $valor_contato->execute();
+            $resultado_usuario = $valor_usuario->execute();
 
             // Verifica se ambas as inserções foram bem-sucedidas
-            if($resultado_pessoa && $resultado_contato){
+            if($resultado_usuario){
                 return "cadastrado com sucesso";
-            }else{
+            }
+            else{
                 return "erro ao cadastrar";
             }
         }
 
         //os demais métodos seguem a mesma lógica do primeiro
         public function deletar(Usuario $u){
-            $sql_usuario = "delete from pessoa where cpf_pessoa=?";
-            $sql_contato = "delete from contato where pessoa_contato = ?";
+            $sql_usuario = "delete from TB_USUARIO where ID_USUARIO=?";
 
             $bd = new Conexao();
             $con = $bd->getConexao();
 
             $valor_usuario = $con->prepare($sql_usuario);
-            $valor_usuario->bindValue(1, $u->getCpf());
+            $valor_usuario->bindValue(1, $u->getID());
 
-            $valor_contato = $con->prepare($sql_contato);
-            $valor_contato->bindValue(1, $u->getCpf());        
-            
-            $resultado_pessoa = $valor_usuario->execute();
-            $resultado_contato = $valor_contato->execute();
+            $resultado_usuario = $valor_usuario->execute();
 
-            if($resultado_pessoa && $resultado_contato){
+            if($resultado_usuario){
                 return "Apagado com sucesso";
-            }else{
+            }
+            else{
                 return "erro ao apagar";
             }
         }
 
         public function atualizar(Usuario $u){
-            $sql_usuario = "update pessoa set nome_pessoa=?, profissao_pessoa=? where cpf_pessoa =?";
-            $sql_contato = "update contato set telefone_contato=?, email_contato=? where pessoa_contato=?";
+            $sql_usuario = "update TB_USUARIO set NOME_USUARIO=?, NOME_VERDADEIRO=?, EMAIL_USUARIO=?, 
+                            SENHA_USUARIO=?, TEL_USUARIO=?, IMG_USUARIO=? where ID_USUARIO =?";
 
             $bd = new Conexao();
             $con = $bd->getConexao();
 
             $valor_usuario = $con->prepare($sql_usuario);
-            $valor_usuario->bindValue(1, $u->getNome());
-            $valor_usuario->bindValue(2, $u->getProfissao());
-            $valor_usuario->bindValue(3, $u->getCpf());
-
-            $valor_contato = $con->prepare($sql_contato);
-            $valor_contato->bindValue(1, $u->getTelefone());
-            $valor_contato->bindValue(2, $u->getEmail());
-            $valor_contato->bindValue(3, $u->getCpf());      
+            $valor_usuario->bindValue(1, $u->getUsername());
+            $valor_usuario->bindValue(2, $u->getNome());
+            $valor_usuario->bindValue(3, $u->getEmail());
+            $valor_usuario->bindValue(4, $u->getSenha());
+            $valor_usuario->bindValue(5, $u->getTelefone());
+            $valor_usuario->bindValue(6, $u->getImagem());    
             
-            $resultado_pessoa = $valor_usuario->execute();
-            $resultado_contato = $valor_contato->execute();
+            $resultado_usuario = $valor_usuario->execute();
 
-            if($resultado_pessoa && $resultado_contato){
+            if($resultado_usuario){
                 return "Atualizado com sucesso";
-            }else{
+            }
+            else{
                 return "erro ao atualizar";
             }
         }
@@ -99,8 +87,8 @@ include "conexao.php";
         public function consultar(){
     
             // Método para consultar todas as pessoas e seus contatos
-            // Realiza um join entre as tabelas 'pessoa' e 'contato'
-            $sql = "select * from pessoa inner join contato on pessoa.cpf_pessoa=contato.pessoa_contato";
+            // Realiza um join entre as tabelas 'usuario'
+            $sql = "select * from TB_USUARIO inner join contato on pessoa.cpf_pessoa=contato.pessoa_contato";
            
             // Obtém a conexão e executa a consulta
             $bd = new Conexao();

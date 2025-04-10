@@ -2,15 +2,15 @@
 require_once './models/Cupom.php';
 require_once './dao/CupomDAO.php';
 
-class UsuarioController {
+class CupomController {
     public function consultar() {
         $usuarioDAO = new CupomDAO();
         echo json_encode($usuarioDAO->consultar());
     }
 
     public function cadastrar() {
-        $usuarioDAO = new UsuarioDAO();
-        $usuario = new Usuario();
+        $usuarioDAO = new CupomDAO();
+        $usuario = new Cupom();
 
         $usuario->setCpf(filter_input(INPUT_POST, 'cpf'));
         $usuario->setNome(filter_input(INPUT_POST, 'nome'));

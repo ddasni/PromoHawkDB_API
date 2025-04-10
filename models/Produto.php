@@ -4,15 +4,15 @@
 
   class Produto{
     // Atributos privados da classe Produto
-    private $nome, $preco, $descricao, $imagem;
+    private $nomeProduto, $preco, $descricao, $imagem;
 
     // Método para definir o preco da produto
-    public function setNome($nome){
-        $this->nome = $nome;
+    public function setNomeProduto($nomeProduto){
+        $this->nomeProduto = $nomeProduto;
     }
 
     public function getNome(){
-        return $this->nome;
+        return $this->nomeProduto;
     }
 
     // os outros métodos getters e setters para os demais atributos

@@ -4,9 +4,19 @@
 
   class Usuario{
     // Atributos privados da classe Ususario
-    private $nome, $username, $telefone, $email, $senha, $imagem;
+    private $id, $nome, $username, $telefone, $email, $senha, $imagem;
 
     // Método para definir o Nome do usuario
+    public function setID($id){
+        $this->id = $id;
+    }
+
+    public function getID(){
+        return $this->id;
+    }
+
+
+    // os outros métodos getters e setters para os demais atributos
     public function setNome($nome){
         $this->nome = $nome;
     }
@@ -15,8 +25,6 @@
         return $this->nome;
     }
 
-
-    // os outros métodos getters e setters para os demais atributos
     public function setUsername($username){
         $this->username = $username;
     }
