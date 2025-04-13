@@ -84,11 +84,10 @@ include "conexao.php";
         }
 
 
-        public function consultar(){
+        public function consultar(Usuario $u){
     
-            // Método para consultar todas as pessoas e seus contatos
-            // Realiza um join entre as tabelas 'usuario'
-            $sql = "select * from TB_USUARIO inner join contato on pessoa.cpf_pessoa=contato.pessoa_contato";
+            // Método para consultar a TB_USUARIO
+            $sql_usuario = "SELECT * FROM TB_USUARIO WHERE ID_USUARIO = ?";
            
             // Obtém a conexão e executa a consulta
             $bd = new Conexao();
@@ -98,13 +97,15 @@ include "conexao.php";
                 return "está com erro";
             }
 
-            $valor = $con->prepare($sql);
-            $valor->execute();
+            $valor_usuario = $con->prepare($sql_usuario);
+            $valor_usuario->bindValue(1, $u->getID());
+
+            $resultado_usuario = $valor_usuario->execute();
             
             // Verifica se foram encontrados registros
-            if($valor->rowCount()>0){
+            if($resultado_usuario->rowCount()>0){
                 // Retorna os resultados em um array associativo
-                $resultado = $valor->fetchAll(\PDO::FETCH_ASSOC);
+                $resultado = $resultado_usuario->fetchAll(\PDO::FETCH_ASSOC);
                 return $resultado;
             }else{
                 return "erro";

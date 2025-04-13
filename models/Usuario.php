@@ -6,7 +6,7 @@
     // Atributos privados da classe Ususario
     private $id, $nome, $username, $telefone, $email, $senha, $imagem;
 
-    // Método para definir o Nome do usuario
+    // Método para definir o ID do usuario
     public function setID($id){
         $this->id = $id;
     }
