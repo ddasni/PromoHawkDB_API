@@ -1,10 +1,15 @@
 <?php
-require_once './config/config.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+require_once __DIR__ . '/config/config.php';
 
 // Controllers
-require_once './controllers/UsuarioController.php';
-require_once './controllers/CupomController.php';
-require_once './controllers/ProdutoController.php';
+require_once __DIR__ . '/controllers/UsuarioController.php';
+require_once __DIR__ . '/controllers/LojaController.php';
+require_once __DIR__ . '/controllers/ProdutoController.php';
 
 // CORS
 header('Access-Control-Allow-Origin: *');
@@ -18,8 +23,10 @@ $uri = trim($uri, '/');
 $method = $_SERVER['REQUEST_METHOD'];
 $segments = explode('/', $uri);
 
-$recurso = $segments[0] ?? null;
-$acao = $segments[1] ?? null;
+// Ajuste conforme a posição correta na URL
+$recurso = $segments[2] ?? null; // usuario
+$acao = $segments[3] ?? null;    // cadastrar
+
 
 switch ($recurso) {
     case 'usuario':
@@ -28,7 +35,7 @@ switch ($recurso) {
         break;
 
     case 'cupom':
-        $controller = new CupomController();
+        $controller = new LojaController();
         tratarRotas($controller, $acao, $method);
         break;
 
@@ -70,11 +77,11 @@ function tratarRotas($controller, $acao, $method) {
 
 function rotaNaoEncontrada() {
     http_response_code(404);
-    echo json_encode(["erro" => "Rota não encontrada"]);
+    echo json_encode(["erro" => "Rota nao encontrada"]);
 }
 
 function metodoInvalido() {
     http_response_code(405);
-    echo json_encode(["erro" => "Método HTTP não permitido"]);
+    echo json_encode(["erro" => "Método HTTP nao permitido"]);
 }
 ?>
