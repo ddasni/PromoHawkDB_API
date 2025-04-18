@@ -10,7 +10,7 @@ class Conexao{
         // Verifica se a instância já existe
         if(!isset(self::$instancia)){
             // Cria uma nova conexão com o banco de dados
-            self::$instancia = new PDO('"mysql:host=". DB_HOST .";dbname=". DB_NAME ."; charset=utf8", DB_USER, DB_PASS');
+            self::$instancia = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS);
             return self::$instancia;
         }
         else{
