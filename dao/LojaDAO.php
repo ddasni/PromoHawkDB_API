@@ -1,7 +1,7 @@
 <?php
 
 // Inclui o arquivo de conexão com o banco de dados
-include "conexao.php";
+include_once __DIR__ . "/../database/conexao.php";;
 
     // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Pessoa
     class LojaDAO{

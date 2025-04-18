@@ -1,6 +1,6 @@
 <?php
-require_once './models/Produto.php';
-require_once './dao/ProdutoDAO.php';
+require_once __DIR__ . '/../models/Produto.php';
+require_once __DIR__ . '/../dao/ProdutoDAO.php';
 
 class ProdutoController {
     public function consultar() {

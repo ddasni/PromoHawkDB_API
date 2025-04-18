@@ -1,7 +1,7 @@
 <?php
 
 // Inclui o arquivo de conexão com o banco de dados
-include "conexao.php";
+include_once __DIR__ . "/../database/conexao.php";;
 
     // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Cupom
     class ProdutoDAO{
@@ -82,9 +82,9 @@ include "conexao.php";
 
             // Verifica se ambas as inserções foram bem-sucedidas
             if($resultado_produto){
-                return "cadastrado com sucesso";
+                return "Produto cadastrado com sucesso";
             }else{
-                return "erro ao cadastrar";
+                return "erro ao cadastrar o Produto";
             }
         }
 
@@ -101,9 +101,9 @@ include "conexao.php";
             $resultado_produto = $valor_produto->execute();
 
             if($resultado_produto){
-                return "Apagado com sucesso";
+                return "Produto apagado com sucesso";
             }else{
-                return "erro ao apagar";
+                return "erro ao apagar o Produto";
             }
         }
 
@@ -122,9 +122,9 @@ include "conexao.php";
             $resultado_produto = $valor_produto->execute();
 
             if($resultado_produto){
-                return "Atualizado com sucesso";
+                return "Produto atualizado com sucesso";
             }else{
-                return "erro ao atualizar";
+                return "erro ao atualizar o Produto";
             }
         }
     }

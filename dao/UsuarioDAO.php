@@ -1,7 +1,7 @@
 <?php
 
 // Inclui o arquivo de conexão com o banco de dados
-include "conexao.php";
+include_once __DIR__ . "/../database/conexao.php";;
 
     // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Usuario
     class UsuarioDAO{
@@ -66,12 +66,13 @@ include "conexao.php";
             $con = $bd->getConexao();
 
             $valor_usuario = $con->prepare($sql_usuario);
-            $valor_usuario->bindValue(1, $u->getUsername());
-            $valor_usuario->bindValue(2, $u->getNome());
-            $valor_usuario->bindValue(3, $u->getEmail());
-            $valor_usuario->bindValue(4, $u->getSenha());
-            $valor_usuario->bindValue(5, $u->getTelefone());
-            $valor_usuario->bindValue(6, $u->getImagem());    
+            $valor_usuario->bindValue(1, $u->getID());
+            $valor_usuario->bindValue(2, $u->getUsername());
+            $valor_usuario->bindValue(3, $u->getNome());
+            $valor_usuario->bindValue(4, $u->getEmail());
+            $valor_usuario->bindValue(5, $u->getSenha());
+            $valor_usuario->bindValue(6, $u->getTelefone());
+            $valor_usuario->bindValue(7, $u->getImagem());    
             
             $resultado_usuario = $valor_usuario->execute();
 
