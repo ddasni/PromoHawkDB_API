@@ -1,8 +1,13 @@
 <?php
+// para facilitar a visualização de erros
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+header("Content-Type: application/json; charset=UTF-8");
 
 require_once __DIR__ . '/config/config.php';
 
@@ -10,12 +15,6 @@ require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/controllers/UsuarioController.php';
 require_once __DIR__ . '/controllers/LojaController.php';
 require_once __DIR__ . '/controllers/ProdutoController.php';
-
-// CORS
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header("Content-Type: application/json; charset=UTF-8");
 
 // Roteamento
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -34,7 +33,7 @@ switch ($recurso) {
         tratarRotas($controller, $acao, $method);
         break;
 
-    case 'cupom':
+    case 'loja':
         $controller = new LojaController();
         tratarRotas($controller, $acao, $method);
         break;
