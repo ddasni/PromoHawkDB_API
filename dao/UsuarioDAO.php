@@ -6,6 +6,34 @@ include_once __DIR__ . "/../database/conexao.php";;
     // Classe responsável por realizar operações de acesso a dados (DAO) para a entidade Usuario
     class UsuarioDAO{
 
+        public function consultar(Usuario $u){
+            $sql_usuario = "SELECT * FROM TB_USUARIO WHERE ID_USUARIO = ?";
+        
+            $bd = new Conexao();
+            $con = $bd->getConexao();
+        
+            if(!$con){
+                return "erro na conexão";
+            }
+        
+            $valor_usuario = $con->prepare($sql_usuario);
+            $valor_usuario->bindValue(1, $u->getID());
+        
+            $executado = $valor_usuario->execute();
+        
+            if (!$executado) {
+                return "erro na execução da consulta";
+            }
+        
+            if($valor_usuario->rowCount() > 0){
+                $resultado = $valor_usuario->fetchAll(\PDO::FETCH_ASSOC);
+                return $resultado;
+            } 
+            else {
+                return "erro";
+            }
+        }
+
         // Método para cadastrar um novo usuario no banco de dados
         // Insere dados na tabela 'usuario'
         public function cadastrar(Usuario $u){
@@ -66,13 +94,13 @@ include_once __DIR__ . "/../database/conexao.php";;
             $con = $bd->getConexao();
 
             $valor_usuario = $con->prepare($sql_usuario);
-            $valor_usuario->bindValue(1, $u->getID());
-            $valor_usuario->bindValue(2, $u->getUsername());
-            $valor_usuario->bindValue(3, $u->getNome());
-            $valor_usuario->bindValue(4, $u->getEmail());
-            $valor_usuario->bindValue(5, $u->getSenha());
-            $valor_usuario->bindValue(6, $u->getTelefone());
-            $valor_usuario->bindValue(7, $u->getImagem());    
+            $valor_usuario->bindValue(1, $u->getUsername());
+            $valor_usuario->bindValue(2, $u->getNome());
+            $valor_usuario->bindValue(3, $u->getEmail());
+            $valor_usuario->bindValue(4, $u->getSenha());
+            $valor_usuario->bindValue(5, $u->getTelefone());
+            $valor_usuario->bindValue(6, $u->getImagem()); 
+            $valor_usuario->bindValue(7, $u->getID());   
             
             $resultado_usuario = $valor_usuario->execute();
 
@@ -82,35 +110,6 @@ include_once __DIR__ . "/../database/conexao.php";;
             else{
                 return "erro ao atualizar";
             }
-        }
-
-
-        public function consultar(Usuario $u){
-    
-            // Método para consultar a TB_USUARIO
-            $sql_usuario = "SELECT * FROM TB_USUARIO WHERE ID_USUARIO = ?";
-           
-            // Obtém a conexão e executa a consulta
-            $bd = new Conexao();
-            $con = $bd->getConexao();
-            
-            if(!$con){
-                return "está com erro";
-            }
-
-            $valor_usuario = $con->prepare($sql_usuario);
-            $valor_usuario->bindValue(1, $u->getID());
-
-            $resultado_usuario = $valor_usuario->execute();
-            
-            // Verifica se foram encontrados registros
-            if($resultado_usuario->rowCount()>0){
-                // Retorna os resultados em um array associativo
-                $resultado = $resultado_usuario->fetchAll(\PDO::FETCH_ASSOC);
-                return $resultado;
-            }else{
-                return "erro";
-            }
-        }
+        } 
     }
 ?>
