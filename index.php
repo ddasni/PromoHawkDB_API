@@ -13,7 +13,7 @@ require_once __DIR__ . '/config/config.php';
 
 // Controllers
 require_once __DIR__ . '/controllers/UsuarioController.php';
-require_once __DIR__ . '/controllers/LojaController.php';
+require_once __DIR__ . '/controllers/CupomController.php';
 require_once __DIR__ . '/controllers/ProdutoController.php';
 
 // Roteamento
@@ -33,8 +33,8 @@ switch ($recurso) {
         tratarRotas($controller, $acao, $method);
         break;
 
-    case 'loja':
-        $controller = new LojaController();
+    case 'cupom':
+        $controller = new CupomController();
         tratarRotas($controller, $acao, $method);
         break;
 
