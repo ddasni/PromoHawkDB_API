@@ -31,7 +31,7 @@ class UsuarioController {
             return;
         }
     
-        $usuario->setNome($dados->nome); // nome verdadeiro
+        $usuario->setNome($dados->nome);
         $usuario->setUsername($dados->username);
         $usuario->setTelefone($dados->telefone);
         $usuario->setImagem($dados->imagem);
