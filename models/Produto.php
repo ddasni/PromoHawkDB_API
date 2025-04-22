@@ -4,7 +4,7 @@
 
   class Produto{
     // Atributos privados da classe Produto
-    private $idProduto, $nomeProduto, $preco, $descricao, $imagem;
+    private $idProduto, $nomeProduto, $preco, $descricao, $imagem, $idLoja, $nomeLoja;
 
     // Método para definir o id do produto
     public function setIDProduto($idProduto){
@@ -47,6 +47,26 @@
 
     public function getImagemProduto(){
         return $this->imagem;
+    }
+
+
+    // =========================================
+
+    
+    public function setIDLoja($idLoja){
+        $this->idLoja = $idLoja;
+    }
+
+    public function getIDLoja(){
+        return $this->idLoja;
+    }
+
+    public function setNomeLoja($nomeLoja){
+        $this->nomeLoja = $nomeLoja;
+    }
+
+    public function getNomeLoja(){
+        return $this->nomeLoja;
     }
   }
 ?>
