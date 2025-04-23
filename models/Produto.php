@@ -4,7 +4,7 @@
 
   class Produto{
     // Atributos privados da classe Produto
-    private $idProduto, $nomeProduto, $preco, $descricao, $imagem, $idLoja, $nomeLoja;
+    private $idProduto, $nomeProduto, $linkProduto, $preco, $descricao, $imagem, $idLoja, $nomeLoja, $idCategoria, $nomeCategoria;
 
     // Método para definir o id do produto
     public function setIDProduto($idProduto){
@@ -49,8 +49,16 @@
         return $this->imagem;
     }
 
+    public function setLinkProduto($linkProduto) {
+        $this->linkProduto = $linkProduto;
+    }
 
-    // =========================================
+    public function getLinkProduto() {
+        return $this->linkProduto;
+    }
+
+
+    // ===============================================
 
     
     public function setIDLoja($idLoja){
@@ -67,6 +75,26 @@
 
     public function getNomeLoja(){
         return $this->nomeLoja;
+    }
+
+
+    // ================================================
+
+
+    public function setIDCategoria($idCategoria){
+        $this->idCategoria = $idCategoria;
+    }
+
+    public function getIDCategoria(){
+        return $this->idCategoria;
+    }
+
+    public function setNomeCategoria($nomeCategoria){
+        $this->nomeCategoria = $nomeCategoria;
+    }
+
+    public function getNomeCategoria(){
+        return $this->nomeCategoria;
     }
   }
 ?>
