@@ -60,12 +60,12 @@ function tratarRotas($controller, $acao, $method) {
             break;
 
         case 'atualizar':
-            if ($method === 'POST') $controller->atualizar();
+            if ($method === 'PUT') $controller->atualizar();
             else metodoInvalido();
             break;
 
         case 'deletar':
-            if ($method === 'POST') $controller->deletar();
+            if ($method === 'DELETE') $controller->deletar();
             else metodoInvalido();
             break;
 
