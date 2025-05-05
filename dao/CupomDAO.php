@@ -115,7 +115,7 @@ include_once __DIR__ . "/../database/conexao.php";;
         }
 
         public function atualizar(Cupom $c){
-            $sql_cupom = "UPDATE TB_CUPOM set CODIGO_CUPOM=?, DESCONTO_CUPOM=?, DATA_VALIDADE=? where ID_Cupom =?";
+            $sql_cupom = "UPDATE TB_CUPOM set CODIGO_CUPOM=?, DESCONTO_CUPOM=?, VALIDADE_CUPOM=? where ID_Cupom =?";
 
             $bd = new Conexao();
             $con = $bd->getConexao();
