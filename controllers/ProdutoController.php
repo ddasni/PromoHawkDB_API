@@ -16,7 +16,7 @@ class ProdutoController {
         }
 
         $produto->setIDProduto($dados->id);
-        echo json_encode($produtoDAO->consultar());
+        echo json_encode($produtoDAO->consultar($produto));
     }
 
     public function cadastrar() {
