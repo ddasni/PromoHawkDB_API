@@ -74,7 +74,7 @@ include_once __DIR__ . "/../database/conexao.php";;
                 }
         
                 // SQL para inserir dados na 'TB_CUPOM'
-                $sql_cupom = "INSERT INTO TB_CUPOM (CODIGO_CUPOM, DESCONTO_CUPOM, DATA_VALIDADE, ID_LOJA) VALUES (?, ?, ?, ?)";
+                $sql_cupom = "INSERT INTO TB_CUPOM (CODIGO_CUPOM, DESCONTO_CUPOM, VALIDADE_CUPOM, ID_LOJA) VALUES (?, ?, ?, ?)";
                 $valor_cupom = $con->prepare($sql_cupom);
                 $valor_cupom->bindValue(1, $c->getCodigo());
                 $valor_cupom->bindValue(2, $c->getDesconto());
